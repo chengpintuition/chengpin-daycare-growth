@@ -1,11 +1,13 @@
-const CACHE_NAME = "chengpin-growth-v11";
+const CACHE_NAME = "chengpin-growth-v12";
 const APP_ROOT = new URL("./", self.location.href).pathname;
+const TEACHER_ROOT = `${APP_ROOT}?view=teacher`;
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(fetch(APP_ROOT, { cache: "reload" }).then(async (response) => {
+  event.waitUntil(Promise.all([APP_ROOT, TEACHER_ROOT].map(async (url) => {
+    const response = await fetch(url, { cache: "reload" });
     const cache = await caches.open(CACHE_NAME);
-    await cache.put(APP_ROOT, response);
-  }));
+    await cache.put(url, response);
+  })));
   self.skipWaiting();
 });
 
@@ -26,7 +28,10 @@ self.addEventListener("fetch", (event) => {
   }).catch(async () => {
     const cached = await caches.match(event.request);
     if (cached) return cached;
-    if (event.request.mode === "navigate") return caches.match(APP_ROOT);
+    if (event.request.mode === "navigate") {
+      const destination = new URL(event.request.url).searchParams.get("view") === "teacher" ? TEACHER_ROOT : APP_ROOT;
+      return caches.match(destination);
+    }
     return Response.error();
   }));
 });

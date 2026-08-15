@@ -1,0 +1,17 @@
+{
+  "name": "承品托育老师",
+  "short_name": "承品老师",
+  "description": "老师拍照、分类及发布托育成长记录。",
+  "lang": "zh-MY",
+  "id": "./?view=teacher",
+  "start_url": "./?view=teacher",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f4f7fb",
+  "theme_color": "#1769e8",
+  "icons": [
+    { "src": "icons/app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
