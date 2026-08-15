@@ -1,4 +1,4 @@
-const CACHE_NAME = "chengpin-growth-v10";
+const CACHE_NAME = "chengpin-growth-v11";
 const APP_ROOT = new URL("./", self.location.href).pathname;
 
 self.addEventListener("install", (event) => {
