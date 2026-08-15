@@ -1,8 +1,11 @@
-const CACHE_NAME = "chengpin-growth-v2";
+const CACHE_NAME = "chengpin-growth-v4";
 const APP_ROOT = new URL("./", self.location.href).pathname;
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll([APP_ROOT])));
+  event.waitUntil(fetch(APP_ROOT, { cache: "reload" }).then(async (response) => {
+    const cache = await caches.open(CACHE_NAME);
+    await cache.put(APP_ROOT, response);
+  }));
   self.skipWaiting();
 });
 
@@ -13,7 +16,10 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET" || new URL(event.request.url).origin !== self.location.origin) return;
-  event.respondWith(fetch(event.request).then((response) => {
+  const request = event.request.mode === "navigate"
+    ? new Request(event.request, { cache: "no-store" })
+    : new Request(event.request, { cache: "no-cache" });
+  event.respondWith(fetch(request).then((response) => {
     const copy = response.clone();
     caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
     return response;
