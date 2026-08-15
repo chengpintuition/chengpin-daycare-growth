@@ -1,0 +1,18 @@
+{
+  "name": "承品托育成长记录",
+  "short_name": "承品托育",
+  "description": "家长安全查看孩子在托育班的成长记录，老师可直接拍照发布。",
+  "lang": "zh-MY",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f4f7fb",
+  "theme_color": "#1769e8",
+  "icons": [
+    { "src": "icons/app-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" },
+    { "src": "icons/app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
