@@ -1,4 +1,4 @@
-const CACHE_NAME = "chengpin-growth-v17";
+const CACHE_NAME = "chengpin-growth-v18";
 const APP_ROOT = new URL("./", self.location.href).pathname;
 const TEACHER_ROOT = `${APP_ROOT}?view=teacher`;
 
